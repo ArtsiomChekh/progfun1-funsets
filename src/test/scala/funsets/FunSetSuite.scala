@@ -38,6 +38,7 @@ class FunSetSuite extends munit.FunSuite:
     val s1 = singletonSet(1)
     val s2 = singletonSet(2)
     val s3 = singletonSet(3)
+    val s4 = singletonSet(4)
     val s5 = singletonSet(5)
     val s6 = singletonSet(1)
 
@@ -154,8 +155,15 @@ class FunSetSuite extends munit.FunSuite:
       val mS2 = map(sets2, f2)
       assert(contains(mS2, 20))
 
+      val uS1 = union(s1, s2)
+      val unionSetForTest = union(s3, uS1)
+      printSet(unionSetForTest)
+
+      assert(contains(map(unionSetForTest, f1), 4))
+
+
     }
-    
+
   }
 
 
