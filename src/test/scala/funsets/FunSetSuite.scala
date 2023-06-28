@@ -157,8 +157,6 @@ class FunSetSuite extends munit.FunSuite:
 
       val uS1 = union(s1, s2)
       val unionSetForTest = union(s3, uS1)
-      printSet(unionSetForTest)
-
       assert(contains(map(unionSetForTest, f1), 4))
 
 
