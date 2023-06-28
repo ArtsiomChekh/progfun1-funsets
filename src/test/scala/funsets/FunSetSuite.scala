@@ -42,6 +42,7 @@ class FunSetSuite extends munit.FunSuite:
     val s6 = singletonSet(1)
 
     val sets1 = (x: Int) => x >= -100 && x <= 100
+    val sets2 = (x: Int) => x >= 0 && x <= 10
 
   /**
    * This test is currently disabled (by using .ignore) because the method
@@ -131,21 +132,23 @@ class FunSetSuite extends munit.FunSuite:
   test("exists a bounded integer within 's' that satisfies `p`") {
     new TestSets {
       val p1 = (x: Int) => x == 1
-      val p2 = (x: Int) => x >= 5
+      val p2 = (x: Int) => x >= 500
 
       val eS1 = exists(sets1, p1)
-      assertEquals(eS1, true)
+      assertTrue(eS1)
 
       val eS2 = exists(sets1, p2)
-      assertEquals(eS2, true)
+      assertFalse(eS2)
 
     }
   }
 
-  test("exists a bounded integer within 's' that satisfies `p`") {
+  test("map returns a set transformed by applying `f`") {
     new TestSets {
-      val f = (x: Int) => x * 2
-      
+      val f = (x: Int) => x + 1
+
+      val mS1 = map(sets2, f)
+      printSet(mS1)
       
     }
     
