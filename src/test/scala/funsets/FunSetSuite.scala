@@ -145,11 +145,15 @@ class FunSetSuite extends munit.FunSuite:
 
   test("map returns a set transformed by applying `f`") {
     new TestSets {
-      val f = (x: Int) => x + 1
+      val f1 = (x: Int) => x + 1
+      val f2 = (x: Int) => x * 2
 
-      val mS1 = map(sets2, f)
-      printSet(mS1)
-      
+      val mS1 = map(sets2, f1)
+      assert(contains(mS1, 11))
+
+      val mS2 = map(sets2, f2)
+      assert(contains(mS2, 20))
+
     }
     
   }
