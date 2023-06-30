@@ -1,5 +1,7 @@
 package funsets
 
+import scala.annotation.tailrec
+
 /**
  * 2. Purely Functional Sets.
  */
@@ -19,7 +21,7 @@ trait FunSets extends FunSetsInterface:
    * Returns the set of the one given element.
    */
   def singletonSet(elem: Int): FunSet =
-    Set(elem)
+    (x: Int) => x == elem
 
 
   /**
@@ -60,6 +62,7 @@ trait FunSets extends FunSetsInterface:
    * Returns whether all bounded integers within `s` satisfy `p`.
    */
   def forall(s: FunSet, p: Int => Boolean): Boolean =
+    @tailrec
     def iter(a: Int): Boolean =
       if a > bound then
         true
@@ -75,17 +78,13 @@ trait FunSets extends FunSetsInterface:
    * that satisfies `p`.
    */
   def exists(s: FunSet, p: Int => Boolean): Boolean =
-    def falseP(x: Int): Boolean = !p(x)
-
-    !forall(s, falseP)
+    !forall(s, x => !p(x))
 
   /**
    * Returns a set transformed by applying `f` to each element of `s`.
    */
   def map(s: FunSet, f: Int => Int): FunSet =
-    def newSet(x: Int): Boolean = exists(s, (y: Int) => x == f(y))
-
-    newSet
+    (x: Int) => exists(s, (y: Int) => x == f(y))
 
   /**
    * Displays the contents of a set

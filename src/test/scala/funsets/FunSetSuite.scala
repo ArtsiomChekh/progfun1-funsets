@@ -68,7 +68,6 @@ class FunSetSuite extends munit.FunSuite:
       assert(contains(s2, 2), "Singleton")
       assert(contains(s3, 3), "Singleton")
       assert(contains(s5, 5), "Singleton")
-
       assert(!contains(s5, 1), "Singleton")
   }
 
